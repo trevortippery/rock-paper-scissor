@@ -1,42 +1,45 @@
-let playerSelection = "PAPER";
-let computerSelection = getComputerChoice();
-
-correctPlayerSelection = properCapitalization(playerSelection);
-
-console.log(playRound(correctPlayerSelection, computerSelection));
-
-
-
-
-
+//  Rock Paper Scissors Game!
+// Trevor Tippery 
 
 function getComputerChoice() 
 {
-    if(Math.floor(Math.random() * 3) == 0)
-        return "Rock";
-    else if(Math.floor(Math.random() * 3) == 1)
-        return "Paper";
-    else if(Math.floor(Math.random() * 3) == 2)
-        return "Scissors";
+    let randomChoice = Math.floor(Math.random() * 3);
+    
+    if(randomChoice == 0)
+        return "rock";
+    else if(randomChoice == 1)
+        return "paper";
+    else
+        return "scissors";
 }
 
-function playRound (playerSelection, computerSelection) 
+function playRound(playerSelection, computerSelection)
 {
     if(playerSelection == computerSelection)
-        return `It's a tie! You and the computer picked ${playerSelection}`;
-    if(playerSelection == "Rock" && computerSelection == "Scissors") 
+        return `Its a tie! You and the computer both picked ${playerSelection}`
+
+    if(playerSelection == "rock" && computerSelection == "scissors")
         return "You win! Rock beats Scissors";
-    if(playerSelection == "Paper" && computerSelection == "Rock") 
+    if(playerSelection == "paper" && computerSelection == "rock")
         return "You win! Paper beats Rock";
-    if(playerSelection == "Scissors" && computerSelection == "Paper") 
+    if(playerSelection == "scissors" && computerSelection == "paper")
         return "You win! Scissors beats Paper";
     else
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        return `You lose. The computer chose ${computerSelection} and ${computerSelection} beats ${playerSelection}.`;
 }
 
-
-function properCapitalization (str) 
+function properCapitalization(string) 
 {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    return string.toLowerCase();
 }
+
+let playerSelection;
+let computerSelection;
+
+playerSelection = prompt("Choose: Rock, Paper, or Scissors?");
+playerSelection = properCapitalization(playerSelection);
+computerSelection = getComputerChoice();
+
+console.log(playRound(playerSelection, computerSelection));
+
 
