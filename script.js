@@ -22,18 +22,22 @@ function playRound(playerSelection, computerSelection)
 
     if(playerSelection == "rock" && computerSelection == "scissors")
     {
+        playerScore++;
         return "You win! Rock beats Scissors";
     }
     if(playerSelection == "paper" && computerSelection == "rock")
     {
+        playerScore++;
         return "You win! Paper beats Rock";
     }
     if(playerSelection == "scissors" && computerSelection == "paper")
     {
+        playerScore++;
         return "You win! Scissors beats Paper";
     }
     else
     {
+        computerScore++;
         return `You lose. The computer chose ${computerSelection} and ${computerSelection} beats ${playerSelection}.`;
     }
 }
@@ -55,8 +59,6 @@ function properCapitalization()
 function game()
 {
     let roundCounter = 1;
-    let playerScore = 0;
-    let computerScore = 0;
 
 
     for(let i = 0; i < 5; i++)
@@ -71,16 +73,27 @@ function game()
 
         computerSelection = getComputerChoice();
 
-        console.log("Round " + i + ": " + playRound(playerSelection, computerSelection));
+        console.log("Round " + roundCounter + ": " + playRound(playerSelection, computerSelection));
 
         console.log(`Score: ${playerScore} - ${computerScore}`);
         roundCounter++;
     }
 
+    if(playerScore == computerScore)
+        alert("It's a tie! Try again to win. Refresh page if you want to play again.");
+
+    if(playerScore < computerScore)
+        alert("You lost. Better luck next time. Refresh page if you want to play again.");
+    
+    if(playerScore > computerScore)
+        alert("You win. Refresh the page to play again.");
 
 }
 
 /* Main body */
+
+let playerScore = 0;
+let computerScore = 0;
 
 console.log("5 rounds of Rock Paper Scissors! Win 3 rounds to win the game.");
 
